@@ -804,11 +804,6 @@ function renderAyuda(e,texto){
 
 renderAyuda($("#td_T"),"xd")
 
-
-// Hola
-
-
-
 // Ajax
 
 $(document).ready(function(){
