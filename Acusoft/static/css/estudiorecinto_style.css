@@ -1,0 +1,324 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none; /* supported by Chrome and Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+  }
+
+body{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+div#recinto_full{
+    display: flex;
+    flex-direction: row;
+}
+
+div#recinto_sidebar{
+    background-color: #ddd;
+    position: fixed;
+    width: 240px;
+    height: 100vh;
+}
+
+div#recinto_sidebar__header{
+    padding: 20px;
+    height: 60px;
+    background-color: #ddd;
+}
+
+div#recinto_sidebar__body{
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    
+}
+
+div#recintos_main{
+    margin-left: 240px;
+    width: calc(100vw - 240px);
+    display: flex;
+    flex-direction: column;
+}
+
+div#recintos_main__header{
+    position: fixed;
+    width: 100vw;
+    height: 60px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+}
+
+div#recintos_main__body{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: calc(100vw - 240px);
+    
+}
+
+.dimensiones{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    
+
+    padding: 5px 0px;
+    border: 1px solid #424242;
+    margin: 5px;
+    border-radius: 10px;
+    opacity: 1;
+
+}
+
+.dimensiones_input{
+    width: 100%;
+    border: 1px solid #424242;
+    border-radius: 5px;
+    padding: 3px 5px;
+    
+}
+
+table.entrada_datos{
+    border-collapse: collapse;
+    font-size: 13px;
+
+    
+}
+
+table.entrada_datos td{
+    padding: 1px 15px;
+}
+
+div#ayuda{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ddd;
+    padding: 10px 0px;
+    border: 1px solid #424242;
+    margin: 5px;
+    border-radius: 10px;
+    width: 230px;
+    height: 210px;
+}
+
+.Tabla__wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    height: calc(100vh - 60px - 84px);
+}
+
+div#TablaRT60resp__wrapper{
+    width: 100%;
+    padding: 20px;
+    /* position: fixed; */
+    left: 240px;
+    bottom: 0;
+}
+
+table.TablaRT60__header{
+    border-collapse: collapse;
+    border-bottom: 5px solid #d5a103;
+}
+
+table.TablaRT60__header th{
+    background-color: rgb(255, 191, 0);
+    border-collapse: collapse;
+    padding: 10px 0px;
+}
+
+table.TablaRT60__paredes{
+    border-collapse: collapse;
+    border-bottom: 1px solid #a4a4a4;
+    
+    
+    
+}
+
+table#Tabla_Suma{
+    width: 100%;
+    
+}
+table.TablaRT60__paredes th{
+    text-align: left;
+    border-collapse: collapse;
+    padding: 10px 10px;
+    background-color: #ffd966;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+table.TablaRT60__paredes td{
+    text-align: center;
+}
+
+.btn_tabla{
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255,192,0,0);
+    border-radius: 50px;   
+}
+
+.btn_tabla:hover{
+    background-color: rgba(255,192,0,0.5);
+}
+
+.btn_cerrar{
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255,192,0,0);
+    border-radius: 50px;   
+}
+
+.btn_cerrar:hover{
+    background-color: rgba(255,192,0,0.5);
+}
+
+button:focus {outline:0;}
+
+#dialogoverlay{
+	background-color:#ffffff;
+	opacity:0.7;
+    width:100vw;
+    height: 100vh;
+	top:0px;
+	left:0px;
+	position:fixed;
+    z-index:10;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#dialogbox{ 
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    
+}
+
+#dialogboxfoot{
+    background-color: rgba(0,0,0,0);
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #424242;
+    
+}
+
+.dialogbox_boton{
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 3px 5px;
+    width: 100px;
+    
+}
+
+div#RT60_inspector{
+    background-color: #ddd;
+    height: calc(100vh - 60px);
+    width: 400px;
+}
+
+.recintos_main__tablas{
+    width: calc(100vw -  240px);
+}
+
+.td_nombreobjeto:hover{
+    background-color: #d5a103;
+}
+
+#vista{
+    width: 200px;
+}
+
+.TablaConteoModos{
+    width: 100%;
+    border-collapse: collapse;
+    padding: 10px 10px;
+}
+
+.TablaConteoModos th{
+    padding: 10px 10px;
+    background-color: rgb(255, 191, 0);
+    border-bottom: 5px solid #d5a103;
+}
+
+.TablaConteoModos td{
+    padding: 10px 10px;
+    border-bottom: 1px solid #a4a4a4;
+    text-align: center;
+}
+
+.TablaFrecuenciasModales{
+    width: 100%;
+    border-collapse: collapse;
+    padding: 0px 0px;
+}
+
+.TablaFrecuenciasModales th{
+    padding: 0px 0px;
+    background-color: rgb(255, 191, 0);
+    border-bottom: 5px solid #d5a103;
+}
+
+.TablaFrecuenciasModales td{
+    padding: 0px 0px;
+    text-align: center;
+    
+}
+
+.TablaFrecuenciasModales tr:nth-child(even){
+    background-color: #ddd;
+}
+
+
+div#recintos_main__FrecuenciasModales{
+    display: flex;
+    
+}
+
+div#GraficaRT60_wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    height: calc(100vh - 60px);
+}
+
+div#CriterioBonello_wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    height: calc(100vh - 60px);
+}
+
+div#ayuda{
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    font-size: 12px;
+    padding: 15px;
+}

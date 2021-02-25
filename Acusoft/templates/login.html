@@ -1,0 +1,48 @@
+{% load static %}
+<html>
+    <head>
+        <title>Iniciar Sesión</title>
+        <link rel="stylesheet" href="{% static 'css/login_style.css' %}">
+    </head>
+    <body>
+    
+        <div class = "wrapper">
+            <header>
+                <a href="/" class = active><img src="{% static 'images/AcuSoft-Logo.png' %}" alt="My image" height="32"></a>
+            </header>
+        </div>
+        <div class = container>
+
+            <div class = "loginbox">
+                <p><input class = "input_login" placeholder="Correo electrónico" type="email"></p>
+                <p><input class = "input_login" placeholder="Contraseña" type= "password"></p>
+                <p><a href="/user/inicio/"><button class = "button_login">Iniciar sesión</button></a></p>
+                <p><a href="#"><u>¿Olvidaste tu contraseña?</u></a></p>
+                <hr style="width:364px;text-align:left;margin-left:0">
+                <p><a href="/login/"><button class = "button_login" style="background-color:rgba(0,136,169,1); color: #fff;">Crear cuenta nueva</button></a></p>
+            </div>
+
+        </div>
+        
+        <div class = "site-footer">
+            <div class="site-footer__wrapper" style="background-color: #ddd;">
+                <div style="background-color: #ddd;">
+                    <p style="background-color: #ddd;">Sobre AcuSoft</p>
+                    <br>
+                    <ul class = "site-footer__links">
+                        <li><a href="#">¿Qué es AcuSoft?</a></li>
+                        <li><a href="#">Misión</a></li>
+                        <li><a href="#">Visión</a></li>
+                    </ul>
+                </div>
+                
+                <div style="background-color: #ddd;">
+                    ¿Qué es AcuSoft?
+                </div>
+                <div style="background-color: #ddd;">
+                    ¿Qué es AcuSoft?
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

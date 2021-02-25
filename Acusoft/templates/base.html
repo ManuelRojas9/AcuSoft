@@ -1,0 +1,148 @@
+{% load static %}
+<html>
+    <head>
+        
+        <title>
+            {%block title%}{% endblock %}
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                background-color: #ffffff;
+            }
+
+            li, a, button, .site-footer{
+                font-family: "Montserrat", sans-serif;
+                font-weight: 500;
+                font-size: 16px;
+                color: #000000;
+                text-decoration: none;
+            }
+
+            .wrapper{
+                margin: auto;
+                max-width: 1400px;
+            }
+
+            header {
+                display:flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 30px 0px;                
+            }
+
+            .nav__links li {
+                display: inline-block;
+                padding: 0px 20px;
+            }
+
+            .nav__links li a {
+                color: #424242;
+                transition: all 0.3s ease 0s;
+            }
+
+            .nav__links li a:hover {
+                transition: all 0.3s ease 0s;
+                color:rgba(0,136,169,1);
+            }
+
+            .site-footer__links li {
+                background-color: #ddd;
+                padding: 0px 20px;
+            }
+
+            .site-footer__links li a {
+                display: flex;
+                color: #424242;
+                background-color: #ddd;
+                transition: all 0.3s ease 0s;
+                
+            }
+
+            .site-footer__links li a:hover {
+                transition: all 0.3s ease 0s;
+                color:rgba(0,136,169,1);
+            }
+
+
+            button {
+                padding: 9px 25px;
+                background-color:rgba(255,192,0,1);
+                color: #424242;
+                border: none;
+                border-radius: 50px;
+                cursor:pointer;
+                transition: all 0.3s ease 0s;
+            }
+
+            button:hover {
+                background-color:rgba(255,192,0,0.8);
+            }
+
+            .site-footer {
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: #ddd;
+                color: black;
+                text-align: center;
+                height: 252px;
+            }
+
+            .site-footer__wrapper{
+                margin: auto;
+                max-width: 1400px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 30px 0px;
+            }
+            
+        </style>
+        {% block styles %} {% endblock %}
+    </head>
+    <body>
+        <div class = "wrapper">
+            <header>
+                <a href="" class = active><img src="{% static 'images/AcuSoft-Logo.png' %}" alt="My image" height="32"></a>
+                <nav>                
+                    <ul class = "nav__links">                        
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                    </ul>                
+                </nav>
+                <a href="login/"><button>Iniciar sesión</button></a>
+            </header>
+        </div>
+
+        {% block content %}{% endblock %}
+
+        <div class = "site-footer">
+            <div class="site-footer__wrapper" style="background-color: #ddd;">
+                <div style="background-color: #ddd;">
+                    <p style="background-color: #ddd;">Sobre AcuSoft</p>
+                    <br>
+                    <ul class = "site-footer__links">
+                        <li><a href="#">¿Qué es AcuSoft?</a></li>
+                        <li><a href="#">Misión</a></li>
+                        <li><a href="#">Visión</a></li>
+                    </ul>
+                </div>
+                <div style="background-color: #ddd;">
+                    ¿Qué es AcuSoft?
+                </div>
+                <div style="background-color: #ddd;">
+                    ¿Qué es AcuSoft?
+                </div>
+            </div>
+        </div>
+        {% block scripts %}{% endblock %}
+        
+    </body>
+    
+</html>

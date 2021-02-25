@@ -1,0 +1,27 @@
+{% load static %}
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/user_style.css' %}">
+        <script src="{% static 'js/jquery-3.5.1.js' %}"></script>
+    </head>
+    <body>
+    <div id = "acusoft_full">
+        <div id = "acusoft_sidebar">
+            <div id = "acusoft_sidebar__header">
+            <a href="/"  style = "background-color: rgba(255,255,25,0);"><img src="{% static 'images/AcuSoft-Logo.png' %}" style = "background-color: rgba(255,255,25,0);"alt="My image" height="20"></a>
+            </div>
+            <div id = "acusoft_sidebar__menu">
+                <a id = "boton_inicio" class = "menu__links" href = "/user/inicio/">Inicio</a>
+                <a id = "boton_proyectos" class = "menu__links" href = "/user/proyectos/">Proyectos</a>
+            </div>
+        </div>
+        <div id = "acusoft_main">
+            {% block content %}{% endblock %}                
+        </div>            
+    </div>
+
+    <script src="{% static 'js/user_script.js' %}"></script>
+    {% block scripts %}{% endblock %}      
+    </body>
+</html>

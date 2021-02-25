@@ -1,0 +1,154 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+  }
+
+body{
+    font-family: 'Helvetica', sans-serif
+}
+
+div#acusoft_full{
+    display: flex;
+    flex-direction: row;
+}
+
+div#acusoft_sidebar{
+    background-color: #ddd;
+    position: fixed;
+    width: 240px;
+    height: 100vh;
+}
+
+div#acusoft_sidebar__header{
+    padding: 20px;
+    background-color: #ddd;
+}
+
+div#acusoft_sidebar__menu{
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    background-color: #ddd;
+}
+
+div#acusoft_main{
+    margin-left: 240px;
+    width: calc(100vw);
+    display: flex;
+    flex-direction: column;
+}
+
+div#acusoft_main__header{
+    position: fixed;
+    width: 100vw;
+    height: 60px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+}
+
+div#acusoft_main__body{
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div#acusoft_main__inicio{
+    padding: 20px;
+    width: 1000px;
+}
+
+.menu__links{
+    background-color: #ddd;
+    padding: 10px 20px;
+}
+
+.menu__links:hover{
+    background-color: rgba(160, 160, 160, 0.8);
+}
+
+.recientes{
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.image-object{
+    width: 120px;
+    height: 120px;
+    border-radius: 20%;
+    border: 3px solid #424242;
+    border-style: dashed;
+}
+
+.button-object{
+    border-radius: 20%;
+    padding: 10px;
+    width: 140px;
+    height: 200px;
+    transition: all 0.3s ease 0s;
+    margin: 5px;
+}
+
+.button-object:hover{
+    transition: all 0.3s ease 0s;
+    background-color: #ddd;
+}
+
+.name-object{
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 5px;
+    background-color:  rgba(160, 160, 160, 0);
+}
+
+div#acusoft_main__proyectos{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 20px;
+
+}
+
+.acusoft_main__subtitulo{
+    width: 100%;
+    border-bottom: 1px solid #ddd; 
+    padding: 20px;
+}
+
+button {
+    padding: 9px 25px;
+    background-color:rgba(255,192,0,1);
+    color: #424242;
+    border: none;
+    border-radius: 50px;
+    cursor:pointer;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover {
+    background-color:rgba(255,192,0,0.8);
+}
+
+table.tabla_proyectos{
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    border-collapse: collapse;
+    
+}
+
+table.tabla_proyectos td, th{
+    border-bottom: 1px solid #ddd;
+    border-collapse: collapse;
+    padding: 10px;
+    text-align: left;
+    
+}

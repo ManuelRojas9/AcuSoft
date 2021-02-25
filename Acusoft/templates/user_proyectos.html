@@ -1,0 +1,46 @@
+{% extends "userbase.html" %}
+{% load static %}
+
+{% block title %}{% endblock %}
+{% block content %}
+
+    <div id = "acusoft_main__header"></div>
+    <div id = "acusoft_main__body">
+        <div id = "acusoft_main__proyectos">
+            <div class = "acusoft_main__subtitulo">Favoritos</div>
+            <div class = "recientes">
+                <div class = button-object>
+                    <div class = "image-object"></div>                                
+                    <div class = "name-object">Nuevo proyecto</div>
+                </div>
+            </div>
+            <hr>
+            <div><a href="#"><button style="margin: 10px;">Nuevo proyecto</button></a></div>
+            <div class = "lista">
+                <table class = "tabla_proyectos">
+                    <colgroup>
+                        <col width = 50%>
+                        <col width = 30%>
+                        <col width = 10%>
+                        <col width = 10%>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Modificación</th>
+                            <th>Tamaño</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td><a href = "/user/proyectos/Proyecto_1">Proyecto 1</a></td>
+                        <td>Hoy</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>        
+    </div>
+
+    {% block scripts %}{% endblock %}      
+{% endblock %}

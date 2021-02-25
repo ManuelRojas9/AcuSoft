@@ -1,0 +1,39 @@
+{% extends "userbase.html" %}
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+{% block content %}
+
+    <div id = "acusoft_main__header"></div>
+    <div id = "acusoft_main__body">
+        <div id = "acusoft_main__inicio">
+            <div id = "proyectos-recientes">
+                <div class = "acusoft_main__subtitulo">
+                    Proyectos recientes
+                </div>
+                <div class = "recientes">
+                    <div class = button-object>
+                        <div class = "image-object"></div>                                
+                        <div class = "name-object">Nuevo proyecto</div>
+                    </div>
+                </div>
+            </div>
+                        
+            <div id = "archivos-recientes"> 
+                <div class = "acusoft_main__subtitulo">
+                    Archivos recientes
+                </div>
+                <div class = "recientes">
+                    <a href="nuevo_archivo/">
+                        <div class = button-object>
+                            <div class = "image-object"></div>                                
+                            <div class = "name-object">Nuevo archivo</div>
+                        </div>
+                    </a>
+                </div>            
+            </div>
+        </div>                 
+    </div>
+
+    {% block scripts %}{% endblock %}      
+{% endblock %}

@@ -1,0 +1,97 @@
+{% load static %}
+<html>
+    <head>
+        <title>Nuevo Archivo</title>
+        <style>
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                background-color: #ffffff;
+            }
+
+            body{
+                font-family: 'Helvetica', sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .button-object{
+                border-radius: 20%;
+                padding: 10px;
+                width: 140px;
+                height: 200px;
+                transition: all 0.3s ease 0s;
+                margin: 5px;
+            }
+
+            .button-object:hover{
+                transition: all 0.3s ease 0s;
+                background-color: #ddd;
+            }
+
+            .name-object{
+                font-size: 15px;
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                padding: 10px 5px;
+                background-color:  rgba(160, 160, 160, 0);
+            }
+
+            .new-project{
+                width: 120px;
+                height: 120px;
+                border-radius: 20%;
+                border: 3px solid #424242;
+                border-style: dashed;
+            }
+
+            .select{
+                display: flex;
+                flex-direction: column;
+
+            }
+
+            .select_header{
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                flex-direction: column;
+                padding: 0px 20px 20px 20px;
+            }
+
+            .select_tipo{
+                display: flex;
+                flex-direction: row;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class = select>
+            <div class = select_header>
+                <h1 style="padding: 0px 20px 20px 20px;">Crear nuevo archivo</h1>
+                <p>¿Qué quieres hacer?</p>
+            </div>
+            <div class = "select_tipo">
+                <a href = "/estudiorecinto/">
+                    <div class = button-object>
+                        <div class = "new-project"></div>                                
+                        <div class = "name-object">Estudio de recinto</div>
+                    </div>
+                </a>
+                <div class = button-object>
+                    <div class = "new-project"></div>                                
+                    <div class = "name-object">Diseño de paneles</div>
+                </div>
+                <div class = button-object>
+                    <div class = "new-project"></div>                                
+                    <div class = "name-object">Aislamiento de paramento</div>
+                </div>
+            </div>
+    </div>
+        
+    </body>
+</html>

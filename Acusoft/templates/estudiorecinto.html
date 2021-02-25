@@ -1,0 +1,779 @@
+{% load static %}
+<html>
+    <head>
+        <title>
+            
+        </title>
+        <link rel="stylesheet" href="{% static 'css/estudiorecinto_style.css' %}">
+        <script src="{% static 'js/jquery-3.5.1.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    </head>
+    <body>
+        <div id = "recinto_full">
+
+        <!-- Ventana Sidebar -->
+
+            <div id = "recinto_sidebar">
+                <div id = "recinto_sidebar__header">
+            </div>
+            <div id = "recinto_sidebar__body">
+<form method="GET" action="/estudiorecinto_resp/" id="estudiorecinto_form" >
+                <div class = "dimensiones" id = "dimensiones">
+                    Dimensiones del recinto
+                    <table class = "entrada_datos">
+                        <colgroup>
+                            <col width = "50%">
+                            <col width = "50%">
+                        </colgroup>
+                        <tr>
+                            <td>Ancho</td>
+                            <td><input type="number" id = "x" name = "x" class = "dimensiones_input" autocomplete="off"  min = 0  placeholder = "0"></td>
+                        </tr>
+                        <tr>
+                            <td>Altura</td>
+                            <td><input type="number" id = "y" name = "y" class = "dimensiones_input" autocomplete="off"  min = 0 placeholder = "0"></td>
+                        </tr>
+                        <tr>
+                            <td>Profundidad</td>
+                            <td><input type="number" id = "z"  name = "z" class = "dimensiones_input" autocomplete="off" min = 0  placeholder = "0"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class = "dimensiones"> 
+                    Objetivo
+                    <table class = "entrada_datos">
+                        <colgroup>
+                            <col width = "50%">
+                            <col width = "50%">
+                        </colgroup>
+                        <tr>
+                            <td>Propósito</td>
+                            <td>
+                                <select id = "Tipo_Cuarto" type="select" class = "dimensiones_input" style = "font-size: 10px;">
+                                    <option value="Personalizado">Personalizado</option>
+                                    <option value="Voz">Voz hablada</option>
+                                    <option value="Jazz">Música Jazz</option>
+                                    <option value="Orquesta">Música Orquestal</option>
+                                    <option value="Religiosa">Música Religiosa</option>	
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>RT60 ideal</td>
+                            <td><input type="number" id = "RT60_ideal" name = "RT60_ideal" class = "dimensiones_input" autocomplete="off" placeholder = "0"></td>
+                        </tr>
+                    </table>
+                </div>
+                    
+                <div class = "dimensiones">
+                    Geometría
+                    <table class = "entrada_datos">
+                        <colgroup>
+                            <col width = "50%">
+                            <col width = "50%">
+                        </colgroup>
+                        <colgroup>
+                            <col width = "50%">
+                            <col width = "50%">
+                        </colgroup>
+                        <tr>
+                            <td>Área</td>
+                            <td id = "a"></td>
+                        </tr>
+                        <tr>
+                            <td>Volumen</td>
+                            <td id = "v"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class = "dimensiones">
+                    Comportamiento
+                    <table class = "entrada_datos">
+                        <colgroup>
+                            <col width = "50%">
+                            <col width = "50%">
+                        </colgroup>
+                        <tr>
+                            <td>Proporciones</td>
+                            <td id = "proporciones"></td>
+                        </tr>
+                        <tr>
+                            <td>Ancho de banda modal</td>
+                            <td id = "bw"></td>
+                        </tr>
+                        <tr>
+                            <td>Frec. de Schroeder</td>
+                            <td id = freq_S></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class = "dimensiones">
+                    Regiones
+                    <table class = "entrada_datos">
+                        <colgroup>
+                            <col width = "10%">
+                            <col width = "40%">
+                            <col width = "40%">
+                            <col width = "10%">
+                        </colgroup>
+                        <tr>
+                            <td>A</td>
+                            <td id = "RA1"></td>
+                            <td id = "RA2"></td>
+                            <td>Hz</td>
+                        </tr>
+                        <tr>
+                            <td>B</td>
+                            <td id = "RB1"></td>
+                            <td id = "RB2"></td>
+                            <td>Hz</td>
+                        </tr>
+                        <tr>
+                            <td>C</td>
+                            <td id = "RC1"></td>
+                            <td id = "RC2"></td>
+                            <td>Hz</td>
+                        </tr>
+                        <tr>
+                            <td>D</td>
+                            <td id = "RD1"></td>
+                            <td id = "RD2"></td>
+                            <td>Hz</td>
+                        </tr>
+                    </table>
+                </div> 
+                <div class = "dimensiones">
+                    Reverberación
+                    <table class = "entrada_datos">
+                        <colgroup>
+                            <col width = "50%">
+                            <col width = "50%">
+                        </colgroup>
+                        <tr>
+                            <td>RT60 promedio</td>
+                            <td id = td_RT60promedio></td>
+                        </tr>
+                        <tr>
+                            <td>Diferencia</td>
+                            <td id = td_RT60dif></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id = "ayuda"></div>          
+            </div>  
+        </div>
+
+        <!-- Ventana principal -->
+        
+        <div id = "recintos_main">
+            <div id = "recintos_main__header">
+                <select class = "dimensiones_input" id = "vista">
+                    <option value = "Materiales RT60">Materiales RT60</option>
+                    <option value = "Gráfica RT60">Gráfica RT60</option>
+                    <option value = "Conteo de Modos">Conteo de Modos</option>
+                    <option value = "Frecuencias Modales">Frecuencias Modales</option>
+                    <option value = "Criterio de Bonello">Criterio de Bonello</option>
+                </select>
+            </div>
+            <div id = "recintos_main__body">
+
+                <!-- Materiales RT60 -->
+
+                <div id = "recintos_main__MaterialesRT60" class = "recintos_main__tablas">
+                    <div class = "Tabla__wrapper">
+                        <table class = "TablaRT60__header">
+                            <colgroup>
+                                <col width = "15%">
+                                <col width = "15%">
+                                <col width = "10%">
+                                <col width = "10%">
+                                <col width = "10%">
+                                <col width = "10%">
+                                <col width = "10%">
+                                <col width = "10%">
+                                <col width = "10%">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Pared</th>
+                                    <th>Material</th>
+                                    <th>Superficie</th>
+                                    <th>125 hz</th>
+                                    <th>250 hz</th>
+                                    <th>500 hz</th>
+                                    <th>1000 hz</th>
+                                    <th>2000 hz</th>
+                                    <th>4000 hz</th>
+                                </tr>
+                            </thead>
+                        </table>    
+                        <table id = "Tabla_T" class = "TablaRT60__paredes">
+                            <colgroup>
+                                    <col width = "15%" style="background-color:#ffd966">
+                                    <col width = "15%" style="background-color:#fff6b7">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                </colgroup>
+                            <tr>
+                                <th id="td_T" class = "td_nombreobjeto">
+                                    Techo
+                                    <button class = 'btn_tabla' type='button' onclick='addObjeto(this);' value = "Tabla_T">+</button>
+                                </th>
+                                <td style="background-color:#fff6b7">
+                                    <select id="Material_T" name="Material_T">
+                                        {%for x in Materiales %}
+                                        <option value="{{x}}">{{x}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                
+                                <td id ="td_sT"></td>
+                                <script>
+                                    for (var i = 0;i<6;i++) {
+                                        document.write("<td id ='td_saT"+ i +"'></td>")
+                                    }
+                                    
+                                </script>
+                            </tr>
+                        </table>
+                        <table id = "Tabla_P" class = "TablaRT60__paredes">
+                            <colgroup>
+                                    <col width = "15%" style="background-color:#ffd966">
+                                    <col width = "15%" style="background-color:#fff6b7">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                </colgroup>
+                            <tr>
+                                <th id="td_P" class = "td_nombreobjeto">
+                                    Piso
+                                    <button class = 'btn_tabla' type='button' onclick='addObjeto(this);'  value = "Tabla_P">+</button>
+                                </th>
+                                <td style="background-color:#fff6b7">
+                                    <select id="Material_P" name="Material_P">
+                                        {%for x in Materiales %}
+                                        <option value="{{x}}">{{x}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                
+                                <td id ="td_sP"></td>
+                                <script>
+                                    for (var i = 0;i<6;i++) {
+                                        document.write("<td id ='td_saP"+ i +"'></td>")
+                                    }
+                                    
+                                </script>
+                            </tr>
+                        </table>
+                        <table id = "Tabla_WF"  class = "TablaRT60__paredes">
+                            <colgroup>
+                                    <col width = "15%" style="background-color:#ffd966">
+                                    <col width = "15%" style="background-color:#fff6b7">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                </colgroup>
+                            <tr>
+                                <th id="td_WF" class = "td_nombreobjeto">
+                                    Pared Frontal
+                                    <button class = 'btn_tabla' type='button' onclick='addObjeto(this);' value = "Tabla_WF">+</button>
+                                </th>
+                                <td style="background-color:#fff6b7">
+                                    <select id="Material_WF" name="Material_WF">
+                                        {%for x in Materiales %}
+                                        <option value="{{x}}">{{x}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                
+                                <td id ="td_sWF"></td>
+                                <script>
+                                    for (var i = 0;i<6;i++) {
+                                        document.write("<td id ='td_saWF"+ i +"'></td>")
+                                    }
+                                    
+                                </script>
+                            </tr>
+                        </table>
+                        <table id = "Tabla_WB" class = "TablaRT60__paredes">
+                            <colgroup>
+                                    <col width = "15%" style="background-color:#ffd966">
+                                    <col width = "15%" style="background-color:#fff6b7">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                </colgroup>
+                            <tr>
+                                <th id="td_WB" class = "td_nombreobjeto">
+                                    Pared Trasera
+                                    <button class = 'btn_tabla' type='button' onclick='addObjeto(this);' value = "Tabla_WB">+</button>
+                                </th>
+                                <td style="background-color:#fff6b7">
+                                    <select id="Material_WB" name="Material_WB">
+                                        {%for x in Materiales %}
+                                        <option value="{{x}}">{{x}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                
+                                <td id ="td_sWB"></td>
+                                <script>
+                                    for (var i = 0;i<6;i++) {
+                                        document.write("<td id ='td_saWB"+ i +"'></td>")
+                                    }
+                                    
+                                </script>
+                            </tr>
+                        </table>
+                        <table id = "Tabla_WL" class = "TablaRT60__paredes">
+                            <colgroup>
+                                    <col width = "15%" style="background-color:#ffd966">
+                                    <col width = "15%" style="background-color:#fff6b7">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                </colgroup>
+                            <tr>
+                                <th id="td_WL"  class = "td_nombreobjeto">
+                                    Pared Izquierda
+                                    <button  class = 'btn_tabla' type='button' onclick='addObjeto(this);' value = "Tabla_WL">+</button>
+                                </th>
+                                <td style="background-color:#fff6b7">
+                                    <select id="Material_WL" name="Material_WL">
+                                        {%for x in Materiales %}
+                                        <option value="{{x}}">{{x}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                
+                                <td id ="td_sWL"></td>
+                                <script>
+                                    for (var i = 0;i<6;i++) {
+                                        document.write("<td id ='td_saWL"+ i +"'></td>")
+                                    }
+                                    
+                                </script>
+                            </tr>                
+                        </table>
+                        <table id = "Tabla_WR" class = "TablaRT60__paredes">
+                            <colgroup>
+                                    <col width = "15%" style="background-color:#ffd966">
+                                    <col width = "15%" style="background-color:#fff6b7">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                </colgroup>
+                            <tr>
+                                <th id="td_WR"  class = "td_nombreobjeto">
+                                    Pared Derecha
+                                    <button class = 'btn_tabla' type='button' onclick='addObjeto(this);' value = "Tabla_WR">+</button>
+                                </th>
+                                <td style="background-color:#fff6b7">
+                                    <select id="Material_WR" name="Material_WR">
+                                        {%for x in Materiales %}
+                                        <option value="{{x}}">{{x}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                
+                                <td id ="td_sWR"></td>
+                                <script>
+                                    for (var i = 0;i<6;i++) {
+                                        document.write("<td id ='td_saWR"+ i +"'></td>")
+                                    }
+                                    
+                                </script>
+                            </tr>
+                        </table>
+                        <br>
+                    </form>
+                    </div>
+                    <div id = "TablaRT60resp__wrapper" >
+                        <table id = "Tabla_Suma" class = "TablaRT60__paredes" style="border: 1px solid #424242;">
+                            <colgroup>
+                                    <col width = "15%" style="background-color:#ffd966">
+                                    <col width = "15%" style="background-color:#fff6b7">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                    <col width = "10%">
+                                </colgroup>
+                            <tr>
+                                <th id="td_S">
+                                    RT60
+                                </th>
+                                <td style="background-color:#fff6b7"></td>                               
+                                <td id ="td_sS"></td>
+                                <script>
+                                    for (var i = 0;i<6;i++) {
+                                        document.write("<td id ='td_saS"+ i +"'></td>")
+                                    }
+                                    
+                                </script>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div id = "RT60_inspector">
+                    <button id = 'btn_cerrarInspector' class = 'btn_cerrar'>x</button>
+                    <div class="dimensiones">Inspector</div>
+                    <div class = "dimensiones">
+                        Propiedades
+                        <table class = "entrada_datos">
+                            <colgroup>
+                                <col width = "50%">
+                                <col width = "50%">
+                            </colgroup>
+                            <tr>
+                                <td>Nombre</td>
+                                <td id = td_Nombre>x</td>
+                            </tr>
+                            <tr>
+                                <td>Pared</td>
+                                <td id="td_Pared">x</td>
+                            </tr>
+                            <tr>
+                                <td>Largo</td>
+                                <td id="td_Largo">x</td>
+                            </tr>
+                            <tr>
+                                <td>Ancho</td>
+                                <td id ="td_Ancho">x</td>
+                            </tr>
+                            <tr>
+                                <td>Superficie</td>
+                                <td id="td_Superficie">x</td>
+                            </tr>
+                            <tr>
+                            <td>Material</td>
+                                <td id="td_Material">x</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class = "dimensiones">
+                        Coeficientes
+                        <table  class = "entrada_datos" style="text-align: center;">
+                            <tr>
+                                <td>125 Hz</td>
+                                <td>250 Hz</td>
+                                <td>500 Hz</td>
+                                <td>1000 Hz</td>
+                                <td>2000 Hz</td>
+                                <td>4000 Hz</td>
+                            </tr>
+                            <tr>
+                                <td id="td_C1">x</td>
+                                <td id="td_C2">x</td>
+                                <td id="td_C3">x</td>
+                                <td id="td_C4">x</td>
+                                <td id="td_C5">x</td>
+                                <td id="td_C6">x</td>
+                            </tr>					
+                        </table>
+                        <canvas id ="GraficaCoeficientes" height="300"></canvas>
+                    </div>
+                </div>
+
+                <!-- Conteo Modos -->
+
+                <div id = "recintos_main__ConteoModos" class = "recintos_main__tablas">
+                    <div class = "Tabla__wrapper">
+                        <table  id = "TablaConteoModos" class = "TablaConteoModos">
+                            <colgroup>
+                                <col width = "15%" style=" background-color:#ffd966;" >
+                                <script>
+                                    for (i=1;i<16;i++){
+                                        document.write('<col width = "5%">');
+                                    }
+                                </script>                                
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Ancho de Banda</th>
+                                    <th>20 Hz</th>
+                                    <th>25 Hz</th>
+                                    <th>31 Hz</th>
+                                    <th>40 Hz</th>
+                                    <th>50 Hz</th>
+                                    <th>63 Hz</th>
+                                    <th>80 Hz</th>
+                                    <th>100 Hz</th>
+                                    <th>125 Hz</th>
+                                    <th>160 Hz</th>
+                                    <th>200 Hz</th>
+                                    <th>250 Hz</th>
+                                    <th>315 Hz</th>
+                                    <th>400 Hz</th>
+                                    <th>500 Hz</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td><strong>Ancho</strong></td>
+                                <script>
+                                    for (i=1;i<16;i++){
+                                    document.write("<td id = 'td_xmA"+ i +"'></td>");	
+                                    }
+                                </script>      
+                            </tr>
+                            <tr>
+                                <td><strong>Altura</strong></td>
+                                <script>
+                                    for (i=1;i<16;i++){
+                                    document.write("<td id = 'td_ymA"+ i +"'></td>");	
+                                    }
+                                </script>      
+                            </tr>
+                            <tr>
+                                <td><strong>Profundidad</strong></td>
+                                <script>
+                                    for (i=1;i<16;i++){
+                                    document.write("<td id = 'td_zmA"+ i +"'></td>");	
+                                    }
+                                </script>      
+                            </tr>
+                            <tr style="border-top: 2px solid #000">
+                                <td><strong>Total</strong></td>
+                                <script>
+                                    for (i=1;i<16;i++){
+                                    document.write("<td id = 'td_smA"+ i +"'></td>");	
+                                    }
+                                </script>      		
+                            </tr>
+                        </table>
+                        <br>
+                        <table id = "TablaConteoModos" class = "TablaConteoModos" style="border-top: 1px solid #a4a4a4;">
+                            <colgroup>
+                                <col width = "15%" style=" background-color:#ffd966;" >
+                                <script>
+                                    for (i=1;i<16;i++){
+                                        document.write('<col width = "5%">');
+                                    }
+                                </script>                                
+                            </colgroup>
+                            <tr>
+                                <td><strong>Ancho y Altura</strong></td>
+                                <script>
+                                    for (i=1;i<16;i++){
+                                    document.write("<td id = 'td_xymT"+ i +"'></td>");	
+                                    }
+                                </script>      
+                            </tr>
+                            <tr>
+                                <td><strong>Altura y Profundidad</strong></td>
+                                <script>
+                                    for (i=1;i<16;i++){
+                                    document.write("<td id = 'td_zymT"+ i +"'></td>");	
+                                    }
+                                </script>      
+                            </tr>
+                            <tr>
+                                <td><strong>Profundidad y Ancho</strong></td>
+                                <script>
+                                    for (i=1;i<16;i++){
+                                    document.write("<td id = 'td_xzmT"+ i +"'></td>");	
+                                    }
+                                </script>      
+                            </tr>
+                            <tr style="border-top: 2px solid #000">
+                                <td><strong>Total</strong></td>
+                                <script>
+                                    for (i=1;i<16;i++){
+                                    document.write("<td id = 'td_smT"+ i +"'></td>");	
+                                    }
+                                </script>      		
+                            </tr>
+                        </table>
+                        <br>
+                        <table id = "TablaConteoModos" class = "TablaConteoModos" style="border-top: 1px solid #a4a4a4;">
+                            <colgroup>
+                                <col width = "15%" style=" background-color:#ffd966;" >
+                                <script>
+                                    for (i=1;i<16;i++){
+                                        document.write('<col width = "5%">');
+                                    }
+                                </script>                                
+                            </colgroup>
+                            <tr>
+                                <td><strong>Oblicuos</strong></td>
+                                <script>
+                                    for (i=1;i<16;i++){
+                                    document.write("<td id = 'td_xyzmO"+ i +"'></td>");	
+                                    }
+                                </script>      
+                            </tr>
+                        </table>
+                        <br>
+                        <table  id = "TablaConteoModos" class = "TablaConteoModos" style="border-top: 1px solid #a4a4a4;">
+                            <colgroup>
+                                <col width = "15%" style=" background-color:#ffd966;">
+                                <script>
+                                    for (i=1;i<16;i++){
+                                        document.write('<col width = "5%">');
+                                    }
+                                </script>
+                            </colgroup>
+                            <tr>
+                                <td><strong>Total</strong></td>
+                                <script>
+                                    for (i=1;i<16;i++){
+                                    document.write("<td id = 'td_smTotal"+ i +"'></td>");	
+                                    }
+                                </script>      		
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Frecuencias Modales -->
+
+                <div id = "recintos_main__FrecuenciasModales" class = "recintos_main__tablas" style="max-width: 1400px;">
+                    <div id = "FrecuenciasModalesAxial" class = "Tabla__wrapper" style="width: 37.5%;">
+                        <table class = "TablaFrecuenciasModales">
+                            <thead>
+                                <th>Modos Axiales</th>
+                            </thead>
+                        </table>
+                        <table id ="TablaFrecuenciasModalesAxial" class = "TablaFrecuenciasModales" >
+                            <colgroup>
+                                <!-- <col width = "3%" style="background-color:#ffd966"> -->
+                                <col width = "30%" style="background-color:#ffffff">
+                                <col width = "30%" style="background-color:#ffffff">
+                                <col width = "30%" style="background-color:#ffffff">
+                            </colgroup>
+                            <thead>
+                                <th>x</th>
+                                <th>y</th>
+                                <th>z</th>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div id = "FrecuenciasModalesTangencial" class = "Tabla__wrapper" style="width: 37.5%;">
+                        <table class = "TablaFrecuenciasModales" >
+                            <thead>
+                                <th>Modos Tangenciales</th>
+                            </thead>
+                        </table>
+                        <table id ="TablaFrecuenciasModalesTangencial" class = "TablaFrecuenciasModales" >
+                            <colgroup>
+                                <col width = "30%" style="background-color:#ffffff">
+                                <col width = "30%" style="background-color:#ffffff">
+                                <col width = "30%" style="background-color:#ffffff">
+                            </colgroup>
+                            <thead>
+                                <th>xy</th>
+                                <th>zy</th>
+                                <th>xz</th>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div id = "FrecuenciasModalesOblicuo" class = "Tabla__wrapper" style="width: 12.5%;">
+                        <table class = "TablaFrecuenciasModales" >
+                            <thead>
+                                <th>Modos Oblicuos</th>
+                            </thead>
+                        </table>
+                        <table id ="TablaFrecuenciasModalesOblicuo" class = "TablaFrecuenciasModales" >
+                            <thead>
+                                <th>xyz</th>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Gráfica RT60 -->
+                
+                <div id = "recintos_main__GraficaRT60" class = "recintos_main__tablas" style= "width: 100%;"> 
+                    <div id = "GraficaRT60_wrapper" class = "recintos_main__tablas">
+                        <canvas id = "GraficaRT60" style="max-width: 1400px; ">   
+                        </canvas>
+                    </div>   
+                </div>
+
+                <!-- Grafica Criterio de Bonello -->
+
+                <div id = "recintos_main__CriterioBonello" class = "recintos_main__tablas" style= "width: 100%;"> 
+                    <div id = "CriterioBonello_wrapper" class = "recintos_main__tablas">
+                        <canvas id = "CriterioBonello" style="max-width: 1400px; ">   
+                        </canvas>
+                    </div>   
+                </div>
+               
+            </div>
+        </div>
+
+<div id="dialogoverlay">
+    <div id="dialogbox" class = "dimensiones">
+        Añadir Objeto
+        <table class = "entrada_datos" style="padding: 5px;">
+            <tr>
+                <td>Nombre</td>
+                <td><input id="nombre_objeto" class = "dimensiones_input" autocomplete="off"/></td>
+            </tr>
+            <tr>
+                <td>Material</td>
+                <td>
+                    <select id="material_objeto"  class = "dimensiones_input" name="material_objeto" >
+                        {%for x in Materiales %}
+                        <option value="{{x}}">{{x}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Altura</td>
+                <td><input id="largo_objeto" type = "number" step = "0.01" class = "dimensiones_input" autocomplete="off"  min = 0  placeholder = "0"/>
+            </tr>
+            <tr>
+                <td>Base</td>
+                <td><input id="ancho_objeto" type = "number" step = "0.01" class = "dimensiones_input" autocomplete="off"  min = 0  placeholder = "0"/>
+            </tr>
+            <tr>
+                <td>Cantidad</td>
+                <td><input id="cantidad_objeto" type = "number" step = "1" class = "dimensiones_input" autocomplete="off"  min = 0  placeholder = "0"/>
+            </tr>
+        </table>
+    <div id="dialogboxfoot">
+        <button id = "anadir" class="dialogbox_boton">Añadir</button>
+        <button id = "cancelar" class="dialogbox_boton">Cancelar</button>
+    </div>
+    </div>
+</div>
+        
+        <script src="{% static 'js/estudiorecintos_script.js' %}"></script>
+    </body>
+</html>
+
