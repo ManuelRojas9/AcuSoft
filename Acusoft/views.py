@@ -428,10 +428,110 @@ def estudiorecinto_resp(request):
 
     return HttpResponse(json.dumps(datos), content_type='application/json')
 
+class Resonador():
+    def __init__(self,fr,q):
+        self.fr = fr
+        self.q  = q
+        self.bw = fr/q
+        self.fh = fr + self.bw/2
+        self.fl = fr - self.bw/2
+        self.RT60 = 2.2/self.bw
+        
+class Difragmatico(Resonador):
+    def panelD(self, b, h, m):
+        self.b = b
+        self.h = h
+        self.m = m
+        self.d = m/(b*h)
+        self.e = ((6/self.fr)**2)/self.d
+
+
+class Perforado(Resonador):
+    def panelP(self, b, h, g, d, p):
+        self.b = b
+        self.h = h
+        self.g = g
+        self.d = d
+        self.p = p
+        self.s = ((78.5*(2.54*d)**2)/p)**(1/2.0)
+        self.nb = round((b/self.s)-1)
+        self.nh = round((h/self.s)-1)
+        self.n = self.nb*self.nh
+        self.e = ((548/self.fr)**2)*(p/(g+0.8*(2.54*d)))
+        self.borde_altura = (self.b - (round(self.s,2)*(self.nb-1)))/2
+        self.borde_base = (self.h - (round(self.s,2)*(self.nh-1)))/2
+
 def disenopaneles(request):
     disenopaneles_Loader = loader.get_template('diseñopaneles.html')
     disenopaneles_Template = disenopaneles_Loader.render({})
     return HttpResponse(disenopaneles_Template)
 
 def disenopaneles_resp(request):
-    pass
+    if request.method == "GET":
+        clear()      
+        Tipo = request.GET.get("tipo")
+        print(Tipo)
+        if Tipo == "Diafragmático":
+            P = Difragmatico(   float(request.GET.get("f")),
+                                float(request.GET.get("q")))
+
+            P.panelD(   float(request.GET.get("db")),
+                        float(request.GET.get("dh")),
+                        float(request.GET.get("dm"))
+            )
+
+            datos = {
+                "f":P.fr,
+                "q":P.q,
+
+                "bw":round(P.bw,2),
+                "fh":round(P.fh,2),
+                "fl":round(P.fl,2),
+                "RT60":round(P.RT60,3),
+
+                "db":P.b,
+                "dh":P.h,
+                "dm":P.m,
+                "dd":round(P.d*100000,2),
+                "de":round(P.e,2)
+            }
+
+        if Tipo == "Perforado":
+            P = Perforado(   float(request.GET.get("f")),
+                            float(request.GET.get("q")))
+
+            P.panelP(   float(request.GET.get("pb")),
+                        float(request.GET.get("ph")),
+                        float(request.GET.get("pg")),
+                        float(request.GET.get("pd")),
+                        float(request.GET.get("pp")),
+            )
+
+            print(P.borde_base)
+            print(P.borde_altura)
+
+            datos = {
+                "f":P.fr,
+                "q":P.q,
+                "bw":round(P.bw,2),
+                "fh":round(P.fh,2),
+                "fl":round(P.fl,2),
+                "RT60":round(P.RT60,3),
+
+                "pb":P.b,
+                "ph":P.h,
+                "pg":P.g,
+                "pd":P.d,
+                "pp":P.p,
+                "pnb":P.nb,
+                "pnh":P.nh,
+
+                "pn":round(P.n),
+                "ps":round(P.s,2),
+                "pe":round(P.e,2),
+
+                "borde_base":round(P.borde_base,2),
+                "borde_altura":round(P.borde_altura,2)
+            }
+
+    return HttpResponse(json.dumps(datos), content_type='application/json')

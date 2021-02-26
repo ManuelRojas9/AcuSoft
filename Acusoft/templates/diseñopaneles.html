@@ -16,6 +16,8 @@
                 </div>
                 <div id = 'paneles_sidebar__body'>
                     <div class = 'entradaDatos'>
+                    <!-- Inicio Formulario -->
+                    <form method="GET" action="/disenopaneles_resp/" id="disenopaneles_form">
                         <table class = 'entradaDatos_Tabla'>
                             <tr>
                                 <td>
@@ -30,7 +32,7 @@
                                     Factor Q
                                 </td>
                                 <td>
-                                    <input id = 'FactorQ' class = 'entradaDatos_input' type = 'number'  min = 0  max = 100 value = "4.33" step = '0.01'>
+                                    <input id = 'factorQ' class = 'entradaDatos_input' type = 'number'  min = 0  max = 100 value = "4.33" step = '0.01'>
                                 </td>
                             </tr>
                         </table>
@@ -42,7 +44,7 @@
                                     Base
                                 </td>
                                 <td>
-                                    <input id = 'base' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
+                                    <input id = 'b_perforado' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
                                 </td>
                             </tr>
                             <tr>
@@ -50,7 +52,7 @@
                                     Altura
                                 </td>
                                 <td>
-                                    <input id = 'altura' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
+                                    <input id = 'h_perforado' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
                                 </td>
                             </tr>
                             <tr>
@@ -58,7 +60,7 @@
                                     Grosor
                                 </td>
                                 <td>
-                                    <input id = 'grosor' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
+                                    <input id = 'g_perforado' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
                                 </td>
                             </tr>
                             <tr>
@@ -66,7 +68,7 @@
                                     Diametro
                                 </td>
                                 <td>
-                                    <select id = 'diametro' class = 'entradaDatos_input'> 
+                                    <select id = 'd_perforado' class = 'entradaDatos_input'> 
                                         <option value = "0.125">1/8 in</option>
                                         <option value = "0.25">1/4 in</option>
                                         <option value = "0.375">3/8 in</option>
@@ -86,7 +88,7 @@
                                     Porcentaje
                                 </td>
                                 <td>
-                                    <input id = 'porcentaje' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
+                                    <input id = 'per_perforado' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
                                 </td>
                             </tr>
                         </table>
@@ -98,7 +100,7 @@
                                     Base
                                 </td>
                                 <td>
-                                    <input id = 'base' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
+                                    <input id = 'b_diafragmatico' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
                                 </td>
                             </tr>
                             <tr>
@@ -106,7 +108,7 @@
                                     Altura
                                 </td>
                                 <td>
-                                    <input id = 'altura' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
+                                    <input id = 'h_diafragmatico' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
                                 </td>
                             </tr>
                             <tr>
@@ -114,23 +116,15 @@
                                     Material
                                 </td>
                                 <td>
-                                    <select id = 'diametro' class = 'entradaDatos_input'> 
-                                        <option value = "0.125">1/8 in</option>
-                                        <option value = "0.25">1/4 in</option>
-                                        <option value = "0.375">3/8 in</option>
-                                        <option value = "0.5">1/2 in</option>
-                                        <option value = "0.625">5/8 in</option>
-                                        <option value = "0.75">3/4 in</option>
-                                        <option value = "0.875">7/8 in</option>
-                                        <option value = "1">1 in</option>
-                                        <option value = "2">2 in</option>
-                                        <option value = "4">4 in</option>
-                                        <option value = "8">8 in</option>
+                                    <select id = 'material_diafragmatico' class = 'entradaDatos_input'> 
+                                        <option value = ""></option>
                                     </select>
                                 </td>
                             </tr>
                         </table>
                     </div>
+                </form>
+                <!-- Fin formulario -->
                     <hr>
                     <div class = 'entradaDatos' id = 'orificiosPerforado'>
                         Num. de Orificios
@@ -139,25 +133,25 @@
                                 <td>
                                     Total
                                 </td>
-                                <td></td>
+                                <td id = 'totalOrificios'></td>
                             </tr>
                             <tr>
                                 <td>
                                     Base
                                 </td>
-                                <td></td>
+                                <td id = 'bOrificios'></td>
                             </tr>
                             <tr>
                                 <td>
                                     Altura
                                 </td>
-                                <td></td>
+                                <td id = 'hOrificios'></td>
                             </tr>
                             <tr>
                                 <td>
                                     Separación
                                 </td>
-                                <td></td>
+                                <td id = 'separacionOrificios'></td>
                             </tr>
                         </table>
                     </div>
@@ -168,13 +162,13 @@
                                 <td>
                                     Altura
                                 </td>
-                                <td></td>
+                                <td id = 'margenh_perforado'></td>
                             </tr>
                             <tr>
                                 <td>
                                     Base
                                 </td>
-                                <td></td>
+                                <td id = 'margenb_perforado'></td>
                             </tr>
                         </table>
                     </div>
@@ -185,7 +179,7 @@
                                 <td>
                                     Espacio
                                 </td>
-                                <td></td>
+                                <td id = 'e_perforado'></td>
                             </tr>
                         </table>
                     </div>
@@ -196,25 +190,25 @@
                                 <td>
                                     Ancho de Banda
                                 </td>
-                                <td></td>
+                                <td id = 'bw'></td>
                             </tr>
                             <tr>
                                 <td>
                                     Freceuncia Superior
                                 </td>
-                                <td></td>
+                                <td id = 'fh'></td>
                             </tr>
                             <tr>
                                 <td>
                                     Freceuncia Superior
                                 </td>
-                                <td></td>
+                                <td id = 'fl'></td>
                             </tr>
                             <tr>
                                 <td>
                                     RT60
                                 </td>
-                                <td></td>
+                                <td id = 'RT60'></td>
                             </tr>
                         </table>
                     </div>
