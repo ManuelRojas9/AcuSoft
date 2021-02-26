@@ -1,0 +1,267 @@
+{% load static %}
+<html>
+    <head>
+        <title>
+            Diseño de paneles
+        </title>
+        <link rel="stylesheet" href="{% static 'css/diseñopaneles_style.css' %}">
+        <script src="{% static 'js/jquery-3.5.1.js' %}"></script>
+    </head>
+    <body>
+        <div id = 'paneles_full'>
+            <!-- Ventana sidebar -->
+            <div id = 'paneles_sidebar'>
+                <div id = paneles_sidebar__header>
+                    
+                </div>
+                <div id = 'paneles_sidebar__body'>
+                    <div class = 'entradaDatos'>
+                        <table class = 'entradaDatos_Tabla'>
+                            <tr>
+                                <td>
+                                    Frecuencia
+                                </td>
+                                <td>
+                                    <input id = 'frecuencia' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Factor Q
+                                </td>
+                                <td>
+                                    <input id = 'FactorQ' class = 'entradaDatos_input' type = 'number'  min = 0  max = 100 value = "4.33" step = '0.01'>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class = 'entradaDatos'  id = 'dimensionesPerforado'>
+                        <table class = 'entradaDatos_Tabla'>
+                            <tr>
+                                <td>
+                                    Base
+                                </td>
+                                <td>
+                                    <input id = 'base' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Altura
+                                </td>
+                                <td>
+                                    <input id = 'altura' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Grosor
+                                </td>
+                                <td>
+                                    <input id = 'grosor' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Diametro
+                                </td>
+                                <td>
+                                    <select id = 'diametro' class = 'entradaDatos_input'> 
+                                        <option value = "0.125">1/8 in</option>
+                                        <option value = "0.25">1/4 in</option>
+                                        <option value = "0.375">3/8 in</option>
+                                        <option value = "0.5">1/2 in</option>
+                                        <option value = "0.625">5/8 in</option>
+                                        <option value = "0.75">3/4 in</option>
+                                        <option value = "0.875">7/8 in</option>
+                                        <option value = "1">1 in</option>
+                                        <option value = "2">2 in</option>
+                                        <option value = "4">4 in</option>
+                                        <option value = "8">8 in</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Porcentaje
+                                </td>
+                                <td>
+                                    <input id = 'porcentaje' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class = 'entradaDatos'  id = 'dimensionesDiafragmatico'>
+                        <table class = 'entradaDatos_Tabla'>
+                            <tr>
+                                <td>
+                                    Base
+                                </td>
+                                <td>
+                                    <input id = 'base' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Altura
+                                </td>
+                                <td>
+                                    <input id = 'altura' class = 'entradaDatos_input' type = 'number'  min = 0  placeholder = "0" step = '0.01'>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Material
+                                </td>
+                                <td>
+                                    <select id = 'diametro' class = 'entradaDatos_input'> 
+                                        <option value = "0.125">1/8 in</option>
+                                        <option value = "0.25">1/4 in</option>
+                                        <option value = "0.375">3/8 in</option>
+                                        <option value = "0.5">1/2 in</option>
+                                        <option value = "0.625">5/8 in</option>
+                                        <option value = "0.75">3/4 in</option>
+                                        <option value = "0.875">7/8 in</option>
+                                        <option value = "1">1 in</option>
+                                        <option value = "2">2 in</option>
+                                        <option value = "4">4 in</option>
+                                        <option value = "8">8 in</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <hr>
+                    <div class = 'entradaDatos' id = 'orificiosPerforado'>
+                        Num. de Orificios
+                        <table class = 'entradaDatos_Tabla'>
+                            <tr>
+                                <td>
+                                    Total
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Base
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Altura
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Separación
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class = 'entradaDatos' id = 'margenesPerforado'>
+                        Margenes
+                        <table class = 'entradaDatos_Tabla'>
+                            <tr>
+                                <td>
+                                    Altura
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Base
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class = 'entradaDatos'>
+                        Espacio de Aire
+                        <table class = 'entradaDatos_Tabla'>
+                            <tr>
+                                <td>
+                                    Espacio
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class = 'entradaDatos'>
+                        RT60
+                        <table class = 'entradaDatos_Tabla'>
+                            <tr>
+                                <td>
+                                    Ancho de Banda
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Freceuncia Superior
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Freceuncia Superior
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    RT60
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id = 'ayuda'>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- Ventana prinicipal -->
+            <div id = 'paneles_main'>
+                <div id = 'paneles_main__header'>
+
+                </div>
+
+                <div id = 'paneles_main__body'>
+                    
+                </div>
+
+            </div>
+        </div>
+
+
+        <div id="dialogoverlay">
+            <div id="dialogbox" class = "entradaDatos">
+                <div class = select>
+                    <div class = select_header>
+                        <p>Seleccione tipo de panel</p>
+                    </div>
+                    <div class = "select_tipo">
+                        <div class = button-object id = 'Boton-perforado'>
+                            <div class = "new-project"></div>                                
+                            <div class = "name-object">Perforado</div>
+                        </div>
+                        <div class = button-object id = 'Boton-diafragmatico'>
+                            <div class = "new-project"></div>                                
+                            <div class = "name-object">Diafragmático</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div id="dialogboxfoot">
+                    <button id = "anadir" class="dialogbox_boton">Añadir</button>
+                    <button id = "cancelar" class="dialogbox_boton">Cancelar</button>
+                </div> -->
+            </div>
+        </div>
+
+        <script src="{% static 'js/diseñopaneles_script.js' %}"></script>
+    </body>
+</html>

@@ -35,8 +35,7 @@ div#recinto_sidebar__body{
     height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
-    align-items: space-between;
-    
+    align-items: space-between;  
 }
 
 div#recintos_main{
@@ -79,7 +78,6 @@ div#recintos_main__body{
     margin: 5px;
     border-radius: 10px;
     opacity: 1;
-
 }
 
 .dimensiones_input{
@@ -93,8 +91,6 @@ div#recintos_main__body{
 table.entrada_datos{
     border-collapse: collapse;
     font-size: 13px;
-
-    
 }
 
 table.entrada_datos td{

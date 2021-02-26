@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from acusoft.views import home, login, user_inicio, user_proyectos, user_proyecto1, user_nuevoarchivo, estudiorecinto, estudiorecinto_resp
+from acusoft.views import home, login, user_inicio, user_proyectos, user_proyecto1, user_nuevoarchivo, estudiorecinto, estudiorecinto_resp, disenopaneles, disenopaneles_resp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +27,7 @@ urlpatterns = [
     path('user/proyectos/Proyecto_1/nuevo_archivo/', user_nuevoarchivo),
     path('estudiorecinto/', estudiorecinto),
     path('estudiorecinto_resp/', estudiorecinto_resp),
+    path('disenopaneles/', disenopaneles),
+    path('disenopaneles_resp/', disenopaneles_resp),
+
 ]

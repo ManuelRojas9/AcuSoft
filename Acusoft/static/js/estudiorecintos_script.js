@@ -217,7 +217,7 @@ var listaPanelesJson;
 var listaPanelesOOP = []
 
 // Clase Prompt Añadir objetos
-$("#dialogoverlay" ).hide();
+$("#dialogoverlay").hide();
 $("#dialogbox").hide();
 class AddPrompt {
     constructor() {

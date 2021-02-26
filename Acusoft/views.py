@@ -89,27 +89,6 @@ class room():
         self.dev = (np.mean((self.RT60f-self.RT60)**2))**(1/2.0)
         self.dif = self.RT60ideal - self.RT60
 
-    # def modo_axial(self):
-    #     self.n = math.ceil((2*(500*2**(1/6.0))*np.amax(self.d))/343)
-    #     print (self.n)
-    #     self.axial = np.ones((self.n,3))
-    #     print(self.axial)
-    #     for i in range(1,self.n+1,1):
-    #         x = 343/2*i/self.d
-    #         self.axial[i-1] = x*self.axial[i-1]
-    #     print(self.axial)
-        
-    # def conteo_axial(self):
-    #     self.conteo_modos = np.zeros((4,15))
-
-    #     for s in range(0,3,1):
-    #         for e in range(0,self.n,1):
-    #             for i in range(0,15,1):
-    #                 if self.axial[e,s] > Tercios_Octava_Low[i] and self.axial[e,s] < Tercios_Octava_High[i]:
-    #                     self.conteo_modos[s,i] += 1
-    #     for i in range(0,15,1):
-    #         self.conteo_modos[3,i] = self.conteo_modos[0,i] + self.conteo_modos[1,i] + self.conteo_modos[2,i]
-
     def modo_axial(self, d):
         self.axial = []
         self.n = math.ceil((2*(500*2**(1/6.0))*np.amax(self.d))/343)
@@ -332,31 +311,6 @@ def estudiorecinto_resp(request):
         RT60f = np.around(R.RT60f,2,None)
         RT60f = RT60f.tolist()
 
-        # R.modo_axial()
-        
-
-        # axial = np.around(R.axial,1,None)
-
-        # axial_lista = axial.tolist()
-
-        # R.conteo_axial()
-
-        # conteo = R.conteo_modos
-
-        # conteo_lista = conteo.tolist()
-
-        # header_a = np.array([['' ,'x','y','z']])
-        # axial_df = pd.DataFrame(data=R.axial,index=range(1,R.n+1,1),columns=header_a[0,1:])
-        # conteo_df = pd.DataFrame(data = R.conteo_modos, index = ['x','y','z','suma'] , columns = np.round(Tercios_Octava))
-
-        # axial_orden = R.axial.flatten()
-        # axial_orden = np.sort(axial_orden)
-        # axial_orden = np.around(axial_orden,2,None)
-        # axial_orden = axial_orden.tolist()
-
-        # print(axial_df)
-        # print(conteo_df)
-
         x = np.array(R.modo_axial(R.x))
         y = np.array(R.modo_axial(R.y))
         z = np.array(R.modo_axial(R.z))
@@ -473,3 +427,11 @@ def estudiorecinto_resp(request):
     }
 
     return HttpResponse(json.dumps(datos), content_type='application/json')
+
+def disenopaneles(request):
+    disenopaneles_Loader = loader.get_template('diseñopaneles.html')
+    disenopaneles_Template = disenopaneles_Loader.render({})
+    return HttpResponse(disenopaneles_Template)
+
+def disenopaneles_resp(request):
+    pass
