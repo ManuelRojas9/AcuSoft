@@ -30,9 +30,9 @@ $("#Boton-diafragmatico").click(function(){
     tipoPanel = "Diafragmático"
 })
 
-$("#frecuencia").on('change',function(){
-    $("#disenopaneles_form").submit();
-})
+// § Submit
+
+// General
 
 $("#frecuencia").on('change',function(){
     $("#disenopaneles_form").submit();
@@ -40,6 +40,8 @@ $("#frecuencia").on('change',function(){
 $("#factorQ").on('change',function(){
     $("#disenopaneles_form").submit();
 })
+
+// Perforado
 $("#b_perforado").on('change',function(){
     $("#disenopaneles_form").submit();
 })
@@ -55,6 +57,30 @@ $("#d_perforado").on('change',function(){
 $("#per_perforado").on('change',function(){
     $("#disenopaneles_form").submit();
 })
+// Diafragmatico
+$("#m_diafragmatico").on('change',function(){
+    $("#disenopaneles_form").submit();
+    habilitarPersonalizado();
+})
+$("#b_diafragmatico").on('change',function(){
+    $("#disenopaneles_form").submit();
+})
+$("#h_diafragmatico").on('change',function(){
+    $("#disenopaneles_form").submit();
+})
+$("#ro_diafragmatico").on('change',function(){
+    $("#disenopaneles_form").submit();
+})
+
+const m_diafragmatico = document.getElementById('m_diafragmatico');
+function habilitarPersonalizado(){
+    if (m_diafragmatico.value != "Personalizado"){
+        console.log("hola")
+        $("#ro_diafragmatico").prop("disabled", true );
+    }else{
+        $("#ro_diafragmatico").prop("disabled", false );
+    }
+}
 
 // Ajax
 
@@ -69,9 +95,9 @@ $(document).ready(function(){
                         'f':$('#frecuencia').val(),
                         'q':$('#factorQ').val(),
 
-                        'db': $('#db').val(),
-                        'dh': $('#dh').val(),
-                        'dm': $('#dm').val(),
+                        'db': $('#b_diafragmatico').val(),
+                        'dh': $('#h_diafragmatico').val(),
+                        'dm': $('#m_diafragmatico').val(),
 
                         'pb': $('#b_perforado').val(),
                         'ph': $('#h_perforado').val(),    
@@ -82,6 +108,7 @@ $(document).ready(function(){
                     },
 
                     success: function(datos){
+
                         console.log("success");
                         console.log(datos);
 
@@ -94,14 +121,20 @@ $(document).ready(function(){
                         $("#margenb_perforado").html(datos.borde_base + 'cm');
 
                         $("#e_perforado").html(datos.pe + 'cm');
+
+                        $("#ro_diafragmatico").val(datos.dd);
+                        $("#e_diafragmatico").html(datos.de);
                         
                         $("#bw").html(datos.bw + ' Hz');
                         $("#fh").html(datos.fh + ' Hz');
                         $("#fl").html(datos.fl + ' Hz');
                         $("#RT60").html(datos.RT60 + ' s');
+
+                        console.log($("#m_diafragmatico option:selected"))
                     },
                     error: function(){
                             console.log("error");
+                            console.log($("#m_diafragmatico option:selected").val())
                     }      
             })
     })

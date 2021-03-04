@@ -399,10 +399,6 @@ def estudiorecinto_resp(request):
             "dif":round(R.dif,3),
             "RT60":round(R.RT60,3),
 
-            # "axial":axial_lista,
-            # "conteo":conteo_lista,
-            # "axial_orden":axial_orden,
-
             "n":R.n,
             "conteo_x":conteo_x.tolist(),
             "conteo_y":conteo_y.tolist(),
@@ -438,11 +434,12 @@ class Resonador():
         self.RT60 = 2.2/self.bw
         
 class Difragmatico(Resonador):
-    def panelD(self, b, h, m):
+    def panelD(self, b, h, mat):
         self.b = b
         self.h = h
-        self.m = m
-        self.d = m/(b*h)
+        self.mat = mat
+        self.m = Densidades[self.mat]
+        self.d = self.m/(b*h)
         self.e = ((6/self.fr)**2)/self.d
 
 
@@ -461,9 +458,23 @@ class Perforado(Resonador):
         self.borde_altura = (self.b - (round(self.s,2)*(self.nb-1)))/2
         self.borde_base = (self.h - (round(self.s,2)*(self.nh-1)))/2
 
+reader = csv.reader(open('DensidadesSuperficiales.csv'))
+
+Densidades = {}
+for row in reader:
+   key = row[0]
+   if key in Densidades:
+       pass
+   milistafloat = []
+   for item in row[1:]:
+       milistafloat.append(float(item))
+   Densidades[key] = float(item)
+
+print(Densidades)
+
 def disenopaneles(request):
     disenopaneles_Loader = loader.get_template('diseñopaneles.html')
-    disenopaneles_Template = disenopaneles_Loader.render({})
+    disenopaneles_Template = disenopaneles_Loader.render({"Densidades":Densidades})
     return HttpResponse(disenopaneles_Template)
 
 def disenopaneles_resp(request):
@@ -477,7 +488,7 @@ def disenopaneles_resp(request):
 
             P.panelD(   float(request.GET.get("db")),
                         float(request.GET.get("dh")),
-                        float(request.GET.get("dm"))
+                        request.GET.get("dm")
             )
 
             datos = {
