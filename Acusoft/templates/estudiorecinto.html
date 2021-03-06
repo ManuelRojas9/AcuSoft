@@ -16,151 +16,136 @@
 
             <div id = "recinto_sidebar">
                 <div id = "recinto_sidebar__header">
+                    <img src = "{% static 'images/AcuSoft-Logo-blanco.png' %}" height="15px">
                     <a href="/user/proyectos/Proyecto_1/"><button class = 'btn_tabla' type='button' onclick='' value = "">←</button></a>
                 </div>
+            <form method="GET" action="/estudiorecinto_resp/" id="estudiorecinto_form" >
             <div id = "recinto_sidebar__body">
-<form method="GET" action="/estudiorecinto_resp/" id="estudiorecinto_form" >
-                <div class = "dimensiones" id = "dimensiones">
-                    Dimensiones del recinto
-                    <table class = "entrada_datos">
-                        <colgroup>
-                            <col width = "50%">
-                            <col width = "50%">
-                        </colgroup>
-                        <tr>
-                            <td>Ancho</td>
-                            <td><input type="number" id = "x" name = "x" class = "dimensiones_input" autocomplete="off"  min = 0  placeholder = "0"></td>
-                        </tr>
-                        <tr>
-                            <td>Altura</td>
-                            <td><input type="number" id = "y" name = "y" class = "dimensiones_input" autocomplete="off"  min = 0 placeholder = "0"></td>
-                        </tr>
-                        <tr>
-                            <td>Profundidad</td>
-                            <td><input type="number" id = "z"  name = "z" class = "dimensiones_input" autocomplete="off" min = 0  placeholder = "0"></td>
-                        </tr>
-                    </table>
+            
+                <div>
+                    <div class = 'boton_sidebar1'><h1>Paredes</h1></div>
+                    <div class = 'boton_sidebar1'><h1>Gráfica RT60</h1></div>
+                    <div class = 'boton_sidebar1'><h1>Conteo de Modos</h1></div>
+                    <div class = 'boton_sidebar1'><h1>Gráfica Modos</h1></div>
+                    <div class = 'boton_sidebar1'><h1>Frecuencias Modales</h1></div>
                 </div>
-                <div class = "dimensiones"> 
-                    Objetivo
-                    <table class = "entrada_datos">
-                        <colgroup>
-                            <col width = "50%">
-                            <col width = "50%">
-                        </colgroup>
-                        <tr>
-                            <td>Propósito</td>
-                            <td>
-                                <select id = "Tipo_Cuarto" type="select" class = "dimensiones_input" style = "font-size: 10px;">
-                                    <option value="Personalizado">Personalizado</option>
-                                    <option value="Voz">Voz hablada</option>
-                                    <option value="Jazz">Música Jazz</option>
-                                    <option value="Orquesta">Música Orquestal</option>
-                                    <option value="Religiosa">Música Religiosa</option>	
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>RT60 ideal</td>
-                            <td><input type="number" id = "RT60_ideal" name = "RT60_ideal" class = "dimensiones_input" autocomplete="off" placeholder = "0"></td>
-                        </tr>
-                    </table>
-                </div>
-                    
-                <div class = "dimensiones">
-                    Geometría
-                    <table class = "entrada_datos">
-                        <colgroup>
-                            <col width = "50%">
-                            <col width = "50%">
-                        </colgroup>
-                        <colgroup>
-                            <col width = "50%">
-                            <col width = "50%">
-                        </colgroup>
-                        <tr>
-                            <td>Área</td>
-                            <td id = "a"></td>
-                        </tr>
-                        <tr>
-                            <td>Volumen</td>
-                            <td id = "v"></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class = "dimensiones">
-                    Comportamiento
-                    <table class = "entrada_datos">
-                        <colgroup>
-                            <col width = "50%">
-                            <col width = "50%">
-                        </colgroup>
-                        <tr>
-                            <td>Proporciones</td>
-                            <td id = "proporciones"></td>
-                        </tr>
-                        <tr>
-                            <td>Ancho de banda modal</td>
-                            <td id = "bw"></td>
-                        </tr>
-                        <tr>
-                            <td>Frec. de Schroeder</td>
-                            <td id = freq_S></td>
-                        </tr>
-                    </table>
-                </div>
+                <div>
+                    <div class = 'boton_sidebar2' id = 'boton-Dimensiones'><h1>Dimensiones</h1></div>
+                    <div id = 'Dimensiones' style = "border-bottom: 1px solid rgba(220, 220, 220, 0.5); padding: 5px;">
+                        <table class = "entradaDatos_Tabla">
+                            <colgroup>
+                                <col width = "50%">
+                                <col width = "50%">
+                            </colgroup>
+                            <tr>
+                                <td>Ancho</td>
+                                <td><input type="number" id = "x" name = "x" class = "entradaDatos_input" autocomplete="off"  min = 0  placeholder = "0"></td>
+                            </tr>
+                            <tr>
+                                <td>Altura</td>
+                                <td><input type="number" id = "y" name = "y" class = "entradaDatos_input" autocomplete="off"  min = 0 placeholder = "0"></td>
+                            </tr>
+                            <tr>
+                                <td>Profundidad</td>
+                                <td><input type="number" id = "z"  name = "z" class = "entradaDatos_input" autocomplete="off" min = 0  placeholder = "0"></td>
+                            </tr>
+                            <tr>
+                                <td>Área</td>
+                                <td id = "a"></td>
+                            </tr>
+                            <tr>
+                                <td>Volumen</td>
+                                <td id = "v"></td>
+                            </tr>
+                            <tr>
+                                <td>Proporciones</td>
+                                <td id = "proporciones"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class = 'boton_sidebar2' id = 'boton-Comportamiento'><h1>Comportamiento</h1></div>
+                    <div id = 'Comportamiento' style = "border-bottom: 1px solid rgba(220, 220, 220, 0.5); padding: 5px;">
+                        <table class = "entradaDatos_Tabla">
+                            <colgroup>
+                                <col width = "50%">
+                                <col width = "50%">
+                            </colgroup>
 
-                <div class = "dimensiones">
-                    Regiones
-                    <table class = "entrada_datos">
-                        <colgroup>
-                            <col width = "10%">
-                            <col width = "40%">
-                            <col width = "40%">
-                            <col width = "10%">
-                        </colgroup>
-                        <tr>
-                            <td>A</td>
-                            <td id = "RA1"></td>
-                            <td id = "RA2"></td>
-                            <td>Hz</td>
-                        </tr>
-                        <tr>
-                            <td>B</td>
-                            <td id = "RB1"></td>
-                            <td id = "RB2"></td>
-                            <td>Hz</td>
-                        </tr>
-                        <tr>
-                            <td>C</td>
-                            <td id = "RC1"></td>
-                            <td id = "RC2"></td>
-                            <td>Hz</td>
-                        </tr>
-                        <tr>
-                            <td>D</td>
-                            <td id = "RD1"></td>
-                            <td id = "RD2"></td>
-                            <td>Hz</td>
-                        </tr>
-                    </table>
-                </div> 
-                <div class = "dimensiones">
-                    Reverberación
-                    <table class = "entrada_datos">
-                        <colgroup>
-                            <col width = "50%">
-                            <col width = "50%">
-                        </colgroup>
-                        <tr>
-                            <td>RT60 promedio</td>
-                            <td id = td_RT60promedio></td>
-                        </tr>
-                        <tr>
-                            <td>Diferencia</td>
-                            <td id = td_RT60dif></td>
-                        </tr>
-                    </table>
+                            <tr>
+                                <td>Ancho de banda modal</td>
+                                <td id = "bw"></td>
+                            </tr>
+                            <tr>
+                                <td>Frec. de Schroeder</td>
+                                <td id = freq_S></td>
+                            </tr>
+                            <table class = "entradaDatos_Tabla__regiones">
+                                <colgroup>
+                                    <col width = "10%">
+                                    <col width = "40%">
+                                    <col width = "40%">
+                                    <col width = "10%">
+                                </colgroup>
+                                <tr>
+                                    <td>A</td>
+                                    <td id = "RA1"></td>
+                                    <td id = "RA2"></td>
+                                    <td>Hz</td>
+                                </tr>
+                                <tr>
+                                    <td>B</td>
+                                    <td id = "RB1"></td>
+                                    <td id = "RB2"></td>
+                                    <td>Hz</td>
+                                </tr>
+                                <tr>
+                                    <td>C</td>
+                                    <td id = "RC1"></td>
+                                    <td id = "RC2"></td>
+                                    <td>Hz</td>
+                                </tr>
+                                <tr>
+                                    <td>D</td>
+                                    <td id = "RD1"></td>
+                                    <td id = "RD2"></td>
+                                    <td>Hz</td>
+                                </tr>
+                            </table>
+                        </table>
+                    </div>
+                    <div class = 'boton_sidebar2' id = 'boton-Reverberacion'><h1>Reverberación</h1></div>
+                    <div id = 'Reverberacion' style = "border-bottom: 1px solid rgba(220, 220, 220, 0.5); padding: 5px;">
+                        <table class = "entradaDatos_Tabla">
+                            <colgroup>
+                                <col width = "50%">
+                                <col width = "50%">
+                            </colgroup>
+                            <tr>
+                                <td>Propósito</td>
+                                <td>
+                                    <select id = "Tipo_Cuarto" type="select" class = "entradaDatos_input" style = "font-size: 10px;">
+                                        <option value="Personalizado">Personalizado</option>
+                                        <option value="Voz">Voz hablada</option>
+                                        <option value="Jazz">Música Jazz</option>
+                                        <option value="Orquesta">Música Orquestal</option>
+                                        <option value="Religiosa">Música Religiosa</option>	
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>RT60 ideal</td>
+                                <td><input type="number" id = "RT60_ideal" name = "RT60_ideal" class = "entradaDatos_input" autocomplete="off" placeholder = "0"></td>
+                            </tr>
+                            <tr>
+                                <td>RT60 promedio</td>
+                                <td id = td_RT60promedio></td>
+                            </tr>
+                            <tr>
+                                <td>Diferencia</td>
+                                <td id = td_RT60dif></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
                 <div id = "ayuda"></div>          
             </div>  
@@ -170,13 +155,6 @@
         
         <div id = "recintos_main">
             <div id = "recintos_main__header">
-                <select class = "dimensiones_input" id = "vista">
-                    <option value = "Materiales RT60">Materiales RT60</option>
-                    <option value = "Gráfica RT60">Gráfica RT60</option>
-                    <option value = "Conteo de Modos">Conteo de Modos</option>
-                    <option value = "Frecuencias Modales">Frecuencias Modales</option>
-                    <option value = "Criterio de Bonello">Criterio de Bonello</option>
-                </select>
             </div>
             <div id = "recintos_main__body">
 
@@ -504,6 +482,53 @@
                             </tr>					
                         </table>
                         <canvas id ="GraficaCoeficientes" height="300"></canvas>
+                    </div>
+                </div>
+
+                <!-- Intro -->
+                <div id = "intro">
+                    <div>
+                        <h2 style="text-align: center; margin-top: 30px;">Estudio de Recinto Rectangular</h2>
+                    </div>
+                    <div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque et elit orci. Nunc non eleifend lectus. Nullam tempus nisi eget libero convallis, 
+                            sed congue nisi accumsan. Fusce tristique velit vitae mi scelerisque sagittis. Donec eget convallis lorem. Praesent egestas nunc nisl, et gravida nisi 
+                            cursus sit amet.
+                        </p>
+                    </div>
+                    <div style = "display: flex; flex-direction: column; align-items: center;">
+                        <table class = "entradaDatos_Tabla-intro">
+                            <tr>
+                                <td>Ancho</td>
+                                <td><input type="number" id = "x-intro" name = "x" class = "intro_input" autocomplete="off"  min = 0  placeholder = "0"></td>
+                            </tr>
+                            <tr>
+                                <td>Altura</td>
+                                <td><input type="number" id = "y-intro" name = "y" class = "intro_input" autocomplete="off"  min = 0 placeholder = "0"></td>
+                            </tr>
+                            <tr>
+                                <td>Profundidad</td>
+                                <td><input type="number" id = "z-intro"  name = "z" class = "intro_input" autocomplete="off" min = 0  placeholder = "0"></td>
+                            </tr>
+                            <tr>
+                                <td>Propósito</td>
+                                <td>
+                                    <select id = "Tipo_Cuarto-intro" type="select" class = "intro_input" style = "font-size: 10px;">
+                                        <option value="Personalizado">Personalizado</option>
+                                        <option value="Voz">Voz hablada</option>
+                                        <option value="Jazz">Música Jazz</option>
+                                        <option value="Orquesta">Música Orquestal</option>
+                                        <option value="Religiosa">Música Religiosa</option>	
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>RT60 ideal</td>
+                                <td><input type="number" id = "RT60_ideal-intro" name = "RT60_ideal" class = "intro_input" autocomplete="off" placeholder = "0"></td>
+                            </tr>
+                        </table>
+                        <button id = "calcular">Calcular</button>
                     </div>
                 </div>
 

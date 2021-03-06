@@ -6,6 +6,27 @@ const z = document.getElementById("z");
 const RT60_ideal = document.getElementById("RT60_ideal");
 const Tipo_CuartoRT60 = document.getElementById("Tipo_Cuarto");
 
+$("#Dimensiones").hide();
+$("#boton-Dimensiones").click(function(){
+    $("#Dimensiones").slideToggle();
+    $(this).toggleClass('active');
+});
+$("#Comportamiento").hide();
+$("#boton-Comportamiento").click(function(){
+    $("#Comportamiento").slideToggle();
+    $(this).toggleClass('active');
+});
+$("#Reverberacion").hide();
+$("#boton-Reverberacion").on('click',function(){
+    $("#Reverberacion").slideToggle();
+    $(this).toggleClass('active');
+});
+
+$(".boton_sidebar1").on('click', function(){
+    $(".boton_sidebar1").removeClass('active');
+    $(this).addClass('active');
+})
+
 // § Cálculos
 
 // Calculo de área y volumen
@@ -43,6 +64,39 @@ function calcularRT60ideal(){
 
     if (Tipo_CuartoRT60.value == "Personalizado"){
         $('#RT60_ideal').prop("disabled", false );
+    }
+}
+
+const Tipo_CuartoRT60Intro = document.getElementById("Tipo_Cuarto-intro");
+
+function calcularRT60idealIntro(){
+    function formulaRT60ideal(a,b){
+        let v_intro = $("#x-intro").val()*$("#y-intro").val()*$("#z-intro").val();
+        console.log(v_intro)
+        tiempo = (a+(b*Math.log10(v_intro)))
+        return tiempo
+    }
+    if (Tipo_CuartoRT60Intro.value == "Voz"){
+        $('#RT60_ideal-intro').val(formulaRT60ideal(-0.343,0.305).toFixed(3));
+        $('#RT60_ideal-intro').prop("disabled", true );
+    }
+    if (Tipo_CuartoRT60Intro.value == "Jazz"){
+        $('#RT60_ideal-intro').val(formulaRT60ideal(-0.236,0.319).toFixed(3));
+        $('#RT60_ideal-intro').prop("disabled", true );
+    }
+
+    if (Tipo_CuartoRT60Intro.value == "Orquesta"){
+        $('#RT60_ideal-intro').val(formulaRT60ideal(0.1034,0.332).toFixed(3));
+        $('#RT60_ideal-intro').prop("disabled", true );
+    }
+
+    if (Tipo_CuartoRT60Intro.value == "Religiosa"){
+        $('#RT60_ideal-intro').val(formulaRT60ideal(0.4878,0.314).toFixed(3));
+        $('#RT60_ideal-intro').prop("disabled", true );
+    }
+
+    if (Tipo_CuartoRT60Intro.value == "Personalizado"){
+        $('#RT60_ideal-intro').prop("disabled", false );
     }
 }
 
@@ -369,56 +423,89 @@ $("#btn_cerrarInspector").click(function(){
 // § Cambiar vista
 
 // Vista default
-$("#recintos_main__MaterialesRT60").show();
+
+$("#intro").show();
+
+$("#recintos_main__MaterialesRT60").hide();
 $("#recintos_main__GraficaRT60").hide();
 $("#recintos_main__ConteoModos").hide();
 $("#recintos_main__FrecuenciasModales").hide();
 $("#recintos_main__CriterioBonello").hide();
 
+$(".intro_input").on('change',function(){
+    calcularRT60idealIntro();
+})
+
+$("#calcular").on('click',function(){
+    if($("#x-intro").val() != 0 && $("#y-intro").val() != 0 && $("#z-intro").val() != 0 && $("#RT60_ideal-intro").val() != 0){
+        $("#x").val($("#x-intro").val());
+        $("#y").val($("#y-intro").val());
+        $("#z").val($("#z-intro").val());
+        $("#Tipo_Cuarto").val($("#Tipo_Cuarto-intro").val());
+        $("#RT60_ideal").val($("#RT60_ideal-intro").val());
+        CalcularTodo();
+        $("#estudiorecinto_form").submit();
+    }
+})
+
 // Cambiar vista select
-$('#vista').on('change',function(){
-    vista = $('#vista option:selected').val();
-    switch (vista){
-        case "Materiales RT60":
-            $("#recintos_main__MaterialesRT60").show();
-            $("#recintos_main__GraficaRT60").hide();
-            $("#recintos_main__ConteoModos").hide();
-            $("#recintos_main__FrecuenciasModales").hide();
-            $("#recintos_main__CriterioBonello").hide();
-        break
-        case "Gráfica RT60":
-            $("#recintos_main__MaterialesRT60").hide();
-            $("#recintos_main__GraficaRT60").show();
-            $("#recintos_main__ConteoModos").hide();
-            $("#recintos_main__FrecuenciasModales").hide();
-            $("#recintos_main__CriterioBonello").hide();
-        break
-        case "Conteo de Modos":
-            $("#recintos_main__MaterialesRT60").hide();
-            $("#recintos_main__GraficaRT60").hide();
-            $("#recintos_main__ConteoModos").show();
-            $("#recintos_main__FrecuenciasModales").hide();
-            $("#recintos_main__CriterioBonello").hide();
-        break
-        case "Frecuencias Modales":
-            $("#recintos_main__MaterialesRT60").hide();
-            $("#recintos_main__GraficaRT60").hide();
-            $("#recintos_main__ConteoModos").hide();
-            $("#recintos_main__FrecuenciasModales").show();
-            $("#recintos_main__CriterioBonello").hide();
-        break
-        case "Criterio de Bonello":
-            $("#recintos_main__MaterialesRT60").hide();
-            $("#recintos_main__GraficaRT60").hide();
-            $("#recintos_main__ConteoModos").hide();
-            $("#recintos_main__FrecuenciasModales").hide();
-            $("#recintos_main__CriterioBonello").show();
-        break
+submit = false;
+
+
+$(".boton_sidebar1:eq(0)").on('click', function(){
+    c = 1;
+    if (submit == false){
+        $("#intro").show();
+        $("#recintos_main__MaterialesRT60").hide();
+    }else{
+        $("#intro").hide();
+        $("#recintos_main__MaterialesRT60").show();
     }
     
-});
+})
+$(".boton_sidebar1:eq(1)").on('click', function(){
+    c = 2;
+    if (submit == false){
+        $("#intro").hide();
+        $("#recintos_main__MaterialesRT60").hide();
+    }else{
+        $("#intro").hide();
+        $("#recintos_main__MaterialesRT60").hide();
+    }
+})
+$(".boton_sidebar1:eq(2)").on('click', function(){
+    c = 3;
+    if (submit == false){
+        $("#intro").hide();
+        $("#recintos_main__MaterialesRT60").hide();
+    }else{
+        $("#intro").hide();
+        $("#recintos_main__MaterialesRT60").hide();
+    }
+})
+$(".boton_sidebar1:eq(3)").on('click', function(){
+    c = 4;
+    if (submit == false){
+        $("#intro").hide();
+        $("#recintos_main__MaterialesRT60").hide();
+    }else{
+        $("#intro").hide();
+        $("#recintos_main__MaterialesRT60").hide();
+    }
+})
+$(".boton_sidebar1:eq(4)").on('click', function(){
+    c = 5;
+    if (submit == false){
+        $("#intro").hide();
+        $("#recintos_main__MaterialesRT60").hide();
+    }else{
+        $("#intro").hide();
+        $("#recintos_main__MaterialesRT60").hide();
+    }
+})
 
 // Cambiar vista con J/K
+
 var c = 1;
 document.addEventListener("keydown", function(e){
     var key = e.key
@@ -430,44 +517,64 @@ document.addEventListener("keydown", function(e){
     }
     switch (c){
         case 1:
-            $('#vista').val("Materiales RT60");
-            $("#recintos_main__MaterialesRT60").show();
-            $("#recintos_main__GraficaRT60").hide();
-            $("#recintos_main__ConteoModos").hide();
-            $("#recintos_main__FrecuenciasModales").hide();
-            $("#recintos_main__CriterioBonello").hide();
+            $(".boton_sidebar1").removeClass('active');
+            $(".boton_sidebar1:eq(0)").addClass('active');
+            if (submit == false){
+                $("#intro").show();
+                $("#recintos_main__MaterialesRT60").hide();
+            }else{
+                $("#intro").hide();
+                $("#recintos_main__MaterialesRT60").show();
+            }
+
            break;
         case 2:
-            $('#vista').val("Gráfica RT60");
-            $("#recintos_main__MaterialesRT60").hide();
-            $("#recintos_main__GraficaRT60").show();
-            $("#recintos_main__ConteoModos").hide();
-            $("#recintos_main__FrecuenciasModales").hide();
-            $("#recintos_main__CriterioBonello").hide();
+            $(".boton_sidebar1").removeClass('active');
+            $(".boton_sidebar1:eq(1)").addClass('active');
+            if (submit == false){
+                $("#intro").hide();
+                $("#recintos_main__MaterialesRT60").hide();
+            }else{
+                $("#intro").hide();
+                $("#recintos_main__MaterialesRT60").hide();
+            }
+
             break;
         case 3:
-            $('#vista').val("Conteo de Modos");
-            $("#recintos_main__MaterialesRT60").hide();
-            $("#recintos_main__GraficaRT60").hide();
-            $("#recintos_main__ConteoModos").show();
-            $("#recintos_main__FrecuenciasModales").hide();
-            $("#recintos_main__CriterioBonello").hide();
+            $(".boton_sidebar1").removeClass('active');
+            $(".boton_sidebar1:eq(2)").addClass('active');
+            if (submit == false){
+                $("#intro").hide();
+                $("#recintos_main__MaterialesRT60").hide();
+            }else{
+                $("#intro").hide();
+                $("#recintos_main__MaterialesRT60").hide();
+            }
+
            break;
         case 4:
-            $('#vista').val("Frecuencias Modales");
-            $("#recintos_main__MaterialesRT60").hide();
-            $("#recintos_main__GraficaRT60").hide();
-            $("#recintos_main__ConteoModos").hide();
-            $("#recintos_main__FrecuenciasModales").show();
-            $("#recintos_main__CriterioBonello").hide();
+            $(".boton_sidebar1").removeClass('active');
+            $(".boton_sidebar1:eq(3)").addClass('active');
+            if (submit == false){
+                $("#intro").hide();
+                $("#recintos_main__MaterialesRT60").hide();
+            }else{
+                $("#intro").hide();
+                $("#recintos_main__MaterialesRT60").hide();
+            }
+
             break;
         case 5:
-            $('#vista').val("Criterio de Bonello");
-            $("#recintos_main__MaterialesRT60").hide();
-            $("#recintos_main__GraficaRT60").hide();
-            $("#recintos_main__ConteoModos").hide();
-            $("#recintos_main__FrecuenciasModales").hide();
-            $("#recintos_main__CriterioBonello").show();
+            $(".boton_sidebar1").removeClass('active');
+            $(".boton_sidebar1:eq(4)").addClass('active');
+            if (submit == false){
+                $("#intro").hide();
+                $("#recintos_main__MaterialesRT60").hide();
+            }else{
+                $("#intro").hide();
+                $("#recintos_main__MaterialesRT60").hide();
+            }
+
             break;
     }
 })
@@ -806,6 +913,8 @@ renderAyuda($("#td_T"),"xd")
 
 // Ajax
 
+var submit;
+
 $(document).ready(function(){
     $("#estudiorecinto_form").submit(function(e){
             e.preventDefault();
@@ -827,6 +936,10 @@ $(document).ready(function(){
                     },
 
                     success: function(datos){
+                            submit = true;
+                            $("#intro").hide();
+                            $("#recintos_main__MaterialesRT60").show();
+
                             console.log("success");
                             console.log(datos)
 
