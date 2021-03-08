@@ -134,20 +134,24 @@ div#recintos_main__header{
 
 div#recintos_main__body{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    height: calc(100vh - 60px);
 }
 
 /* Materiales RT60*/
 
 div#recintos_main__MaterialesRT60{
-    width: 1200px;
-    padding: 5px 0px;
+    width: calc(100vw - 300px);
+    
 }
 
-table.TablaRT60__header{
+table.TablaRT60__header, .TablaRT60__paredes{
     border-collapse: collapse;
+    width: 100%;
+    max-width: 1200px;
+    min-width: 850px;
 }
 
 table.TablaRT60__header th{
@@ -156,11 +160,11 @@ table.TablaRT60__header th{
     border-collapse: collapse;
     padding: 10px 0px;
     font-weight: normal;
+
+    
 }
 
 .TablaRT60__paredes{
-    width: 100%;
-    border-collapse: collapse;
     border-bottom: 1px solid #a4a4a4;
 }
 
@@ -169,10 +173,20 @@ table.TablaRT60__paredes th{
     border-collapse: collapse;
     padding: 10px 10px;
     background-color: rgba(220, 220, 220, 1);
+    color: #000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-weight: normal;
+    font-weight: normal;   
+}
+
+table.TablaRT60__paredes:hover th{
+    background-color: rgb(170, 170, 170);
+}
+
+.active2{
+    border-right: 5px solid #ffd966;  
+    background-color: #ffd966;
 }
 
 
@@ -180,9 +194,41 @@ table.TablaRT60__paredes td{
     text-align: center;
 }
 
-.TablaRT60__header{
-    width: 100%;
+.Tabla__wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 20px;
+    height: calc(100vh - 83px - 60px);
+    overflow-y: scroll;
 }
+
+#TablaRT60resp__wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 20px;
+}
+
+.td_MaterialRT60{
+    width: 180px;
+    background-color: rgba(220, 220, 220, 0.7);
+}
+
+.sa{
+    width: 7%;
+    min-width: 60px;
+
+}
+
+.area{
+    width: 7%;
+    min-width: 60px;
+    background-color: rgba(220, 220, 220, 0.5);
+}
+
+/* Intro */
+
 
 div#intro{
     width: 600px;
@@ -228,4 +274,63 @@ div#intro{
     color:#000;
     background-color:#ffd966; 
     transition: all 0.3s ease 0s;
+}
+
+#dialogoverlay{
+	background-color:#ffffff;
+	opacity:0.7;
+    width:100vw;
+    height: 100vh;
+	top:0px;
+	left:0px;
+	position:fixed;
+    z-index:10;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#dialogbox{ 
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+
+}
+
+#dialogboxfoot{
+    background-color: rgba(0,0,0,0);
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #424242;
+
+}
+
+.dialogbox_boton{
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 3px 5px;
+    width: 100px;   
+}
+
+.dimensiones{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;    
+
+    padding: 5px 0px;
+    border: 1px solid #424242;
+    margin: 5px;
+    border-radius: 10px;
+    opacity: 1;
+}
+
+/* Inspector */
+
+#RT60_inspector{
+    width: 300px;
 }

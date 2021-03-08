@@ -410,13 +410,11 @@ $("#RT60_inspector").hide();
 // Cerrar Inspector
 $("#btn_cerrarInspector").click(function(){
     $("#RT60_inspector").hide();
-    for (i=0;i<td_nombreobjeto.length;i++){
-        td_nombreobjeto[i].style.backgroundColor = "#ffd966";
-    }
-    td_nombreobjeto.onmouseover = function(){
-        this.style.backgroundColor = "#d5a103";
-    }
-});  
+});
+
+$(".td_nombreobjeto").on('click',function(){
+    $(this).addClass('active');
+})
 
 // II. Main
 
@@ -425,7 +423,6 @@ $("#btn_cerrarInspector").click(function(){
 // Vista default
 
 $("#intro").show();
-
 $("#recintos_main__MaterialesRT60").hide();
 $("#recintos_main__GraficaRT60").hide();
 $("#recintos_main__ConteoModos").hide();
@@ -451,15 +448,18 @@ $("#calcular").on('click',function(){
 // Cambiar vista select
 submit = false;
 
-
 $(".boton_sidebar1:eq(0)").on('click', function(){
     c = 1;
     if (submit == false){
         $("#intro").show();
         $("#recintos_main__MaterialesRT60").hide();
+        $("#recintos_main__GraficaRT60").hide();
+        $("#recintos_main__ConteoModos").hide();
     }else{
         $("#intro").hide();
         $("#recintos_main__MaterialesRT60").show();
+        $("#recintos_main__GraficaRT60").hide();
+        $("#recintos_main__ConteoModos").hide();
     }
     
 })
@@ -468,9 +468,13 @@ $(".boton_sidebar1:eq(1)").on('click', function(){
     if (submit == false){
         $("#intro").hide();
         $("#recintos_main__MaterialesRT60").hide();
+        $("#recintos_main__GraficaRT60").hide();
+        $("#recintos_main__ConteoModos").hide();
     }else{
         $("#intro").hide();
         $("#recintos_main__MaterialesRT60").hide();
+        $("#recintos_main__GraficaRT60").show();
+        $("#recintos_main__ConteoModos").hide();
     }
 })
 $(".boton_sidebar1:eq(2)").on('click', function(){
@@ -478,9 +482,13 @@ $(".boton_sidebar1:eq(2)").on('click', function(){
     if (submit == false){
         $("#intro").hide();
         $("#recintos_main__MaterialesRT60").hide();
+        $("#recintos_main__GraficaRT60").hide();
+        $("#recintos_main__ConteoModos").hide();
     }else{
         $("#intro").hide();
         $("#recintos_main__MaterialesRT60").hide();
+        $("#recintos_main__GraficaRT60").hide();
+        $("#recintos_main__ConteoModos").show();
     }
 })
 $(".boton_sidebar1:eq(3)").on('click', function(){
@@ -488,9 +496,13 @@ $(".boton_sidebar1:eq(3)").on('click', function(){
     if (submit == false){
         $("#intro").hide();
         $("#recintos_main__MaterialesRT60").hide();
+        $("#recintos_main__GraficaRT60").hide();
+        $("#recintos_main__ConteoModos").hide();
     }else{
         $("#intro").hide();
         $("#recintos_main__MaterialesRT60").hide();
+        $("#recintos_main__GraficaRT60").hide();
+        $("#recintos_main__ConteoModos").hide();
     }
 })
 $(".boton_sidebar1:eq(4)").on('click', function(){
@@ -498,9 +510,13 @@ $(".boton_sidebar1:eq(4)").on('click', function(){
     if (submit == false){
         $("#intro").hide();
         $("#recintos_main__MaterialesRT60").hide();
+        $("#recintos_main__GraficaRT60").hide();
+        $("#recintos_main__ConteoModos").hide();
     }else{
         $("#intro").hide();
         $("#recintos_main__MaterialesRT60").hide();
+        $("#recintos_main__GraficaRT60").hide();
+        $("#recintos_main__ConteoModos").hide();
     }
 })
 
@@ -522,9 +538,13 @@ document.addEventListener("keydown", function(e){
             if (submit == false){
                 $("#intro").show();
                 $("#recintos_main__MaterialesRT60").hide();
+                $("#recintos_main__GraficaRT60").hide();
+                $("#recintos_main__ConteoModos").hide();
             }else{
                 $("#intro").hide();
                 $("#recintos_main__MaterialesRT60").show();
+                $("#recintos_main__GraficaRT60").hide();
+                $("#recintos_main__ConteoModos").hide();
             }
 
            break;
@@ -534,9 +554,13 @@ document.addEventListener("keydown", function(e){
             if (submit == false){
                 $("#intro").hide();
                 $("#recintos_main__MaterialesRT60").hide();
+                $("#recintos_main__GraficaRT60").hide();
+                $("#recintos_main__ConteoModos").hide();
             }else{
                 $("#intro").hide();
                 $("#recintos_main__MaterialesRT60").hide();
+                $("#recintos_main__GraficaRT60").show();
+                $("#recintos_main__ConteoModos").hide();
             }
 
             break;
@@ -546,9 +570,13 @@ document.addEventListener("keydown", function(e){
             if (submit == false){
                 $("#intro").hide();
                 $("#recintos_main__MaterialesRT60").hide();
+                $("#recintos_main__GraficaRT60").hide();
+                $("#recintos_main__ConteoModos").hide();
             }else{
                 $("#intro").hide();
                 $("#recintos_main__MaterialesRT60").hide();
+                $("#recintos_main__GraficaRT60").hide();
+                $("#recintos_main__ConteoModos").show();
             }
 
            break;
@@ -558,9 +586,13 @@ document.addEventListener("keydown", function(e){
             if (submit == false){
                 $("#intro").hide();
                 $("#recintos_main__MaterialesRT60").hide();
+                $("#recintos_main__GraficaRT60").hide();
+                $("#recintos_main__ConteoModos").hide();
             }else{
                 $("#intro").hide();
                 $("#recintos_main__MaterialesRT60").hide();
+                $("#recintos_main__GraficaRT60").hide();
+                $("#recintos_main__ConteoModos").hide();
             }
 
             break;
@@ -570,9 +602,13 @@ document.addEventListener("keydown", function(e){
             if (submit == false){
                 $("#intro").hide();
                 $("#recintos_main__MaterialesRT60").hide();
+                $("#recintos_main__GraficaRT60").hide();
+                $("#recintos_main__ConteoModos").hide();
             }else{
                 $("#intro").hide();
                 $("#recintos_main__MaterialesRT60").hide();
+                $("#recintos_main__GraficaRT60").hide();
+                $("#recintos_main__ConteoModos").hide();
             }
 
             break;
@@ -1193,10 +1229,10 @@ $(document).ready(function(){
                                 for (i=0;i<5;i++){
                                     $("#td_C"+(i+1)).html(objeto.Coeficiente[1]);
                                 }
-                                for (i=0;i<td_nombreobjeto.length;i++){
-                                    td_nombreobjeto[i].style.backgroundColor = "#ffd966";
-                                }
-                                e.style.backgroundColor = "#d5a103";
+                                // for (i=0;i<td_nombreobjeto.length;i++){
+                                //     td_nombreobjeto[i].style.backgroundColor = "#ffd966";
+                                // }
+                                // e.style.backgroundColor = "#d5a103";
                             
                                 datos_Coef = [null,objeto.Coeficiente[0],objeto.Coeficiente[1],objeto.Coeficiente[2],objeto.Coeficiente[3],objeto.Coeficiente[4],objeto.Coeficiente[5],null];
                             }
